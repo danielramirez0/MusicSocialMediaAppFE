@@ -1,0 +1,48 @@
+: Main Page :
+    : Nav Bar :
+    : Container (Form) :
+        : Login/Registration Form :
+
+: User Search Page :
+    : Nav Bar :
+    : Search Bar :
+    : Container (Users) :
+        : Image : x 6
+        : Add Button : x 6
+        
+: Other User Profile Page :
+    : Nav Bar :
+    : Container (Profile) :
+        : Image :
+        : Add Button :
+        : About User :
+        : Tentative Music Player :
+    : Container (Posts) :
+        : Post : 
+            : Image : 
+            : Text : 
+        : Post :
+            : Image : 
+            : Text : 
+
+: My Profile Page :
+    : Nav Bar :
+    : Container (Profile) :
+        : Image :
+        : About User :
+        : Tentative Music Player :
+    : Container (Add Post) :
+        : Post Form :
+        : Submit Button :
+    : Container (Friends Section) :
+        : Container (List) :
+            : Friend : 
+        : Container (Pending) :
+            : Request :
+    : Container (Posts) :
+        : Post : 
+            : Image : 
+            : Text : 
+        : Post :
+            : Image : 
+            : Text : 

@@ -3,6 +3,7 @@ import NavBar from '../navbar/NavBar';
 import BioInfo from '../BioInfo/BioInfo';
 import FriendsList from '../friendslist/FriendsList';
 import AddPost from '../AddPost/AddPost';
+import PostFeed from '../PostFeed/PostFeed';
 import './myProfile.css'
 const MyProfilePage = () =>{
     return(
@@ -12,6 +13,7 @@ const MyProfilePage = () =>{
                 <div>
                     <BioInfo/>
                     <AddPost/>
+                    <PostFeed/>
                 </div>
                 <div className='friends-list'>
                     <FriendsList/>

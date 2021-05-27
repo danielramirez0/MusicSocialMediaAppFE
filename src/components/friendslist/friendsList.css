@@ -1,0 +1,24 @@
+.friend{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.container-friends-list{
+    border-width: 5px;
+    border-color: black;
+    border-style: solid;
+    margin-top: 20px;
+}
+
+.friends-list-title{
+    border-width: 2px;
+    border-color: darkgrey;
+    border-style: solid;
+    margin: 5px;
+}
+img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}

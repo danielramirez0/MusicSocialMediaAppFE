@@ -1,0 +1,8 @@
+.bio-friends{
+    display: flex;
+    justify-content: space-around;
+}
+
+.friends-list{
+    width: 25%;
+}

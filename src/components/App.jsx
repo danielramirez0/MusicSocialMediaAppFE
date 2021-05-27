@@ -1,5 +1,6 @@
 import "./App.css";
 import {Switch , Route} from 'react-router-dom';
+import MyProfilePage from './myProfilePage/MyProfile';
 
 function App() {
   return (
@@ -12,8 +13,8 @@ function App() {
           <Route path='/searchUserPage' component={SearchUserPage}/>
         </Switch>
       </div> */}
-      <header className="App-header"></header>
-      <h1 className="H1">Hello</h1>
+      {/* <header className="App-header"></header> */}
+      <MyProfilePage />
     </div>
   );
 }

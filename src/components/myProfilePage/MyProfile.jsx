@@ -1,7 +1,8 @@
 import React from 'react';
 import NavBar from '../navbar/NavBar';
 import BioInfo from '../BioInfo/BioInfo';
-import FriendsList from '../friendslist/FriendsList'
+import FriendsList from '../friendslist/FriendsList';
+import AddPost from '../AddPost/AddPost';
 import './myProfile.css'
 const MyProfilePage = () =>{
     return(
@@ -10,6 +11,7 @@ const MyProfilePage = () =>{
             <div className="bio-friends">
                 <div>
                     <BioInfo/>
+                    <AddPost/>
                 </div>
                 <div className='friends-list'>
                     <FriendsList/>

@@ -7,16 +7,20 @@ import PostFeed from "../PostFeed/PostFeed";
 import "./MyProfile.css";
 const MyProfilePage = () => {
   return (
-    <div>
-      <NavBar />
-      <div className="bio-friends">
-        <div>
-          <BioInfo />
-          <AddPost />
-          <PostFeed />
-        </div>
-        <div className="friends-list">
-          <FriendsList />
+    <div className="container">
+      <div className="pb-5">
+        <NavBar userLoggedIn={true} />
+      </div>
+      <div className="container pt-4">
+        <div className="bio-friends">
+          <div>
+            <BioInfo />
+            <AddPost />
+            <PostFeed />
+          </div>
+          <div className="friends-list">
+            <FriendsList />
+          </div>
         </div>
       </div>
     </div>

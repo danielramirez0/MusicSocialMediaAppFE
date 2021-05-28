@@ -18,13 +18,20 @@ const NavBar = (props) => {
           </a>
           <ul className="nav nav-tabs">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <a
+                className={props.tabActive === "0" ? "nav-link active" : "nav-link"}
+                aria-current={props.tabActive === "0" ? "page" : ""}
+                href="/"
+              >
                 Home
               </a>
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link ${props.userLoggedIn === true ? null : "disabled"}`}
+                className={`${props.tabActive === "1" ? "nav-link active" : "nav-link"} ${
+                  props.userLoggedIn === true ? null : "disabled"
+                }`}
+                aria-current={props.tabActive === "1" ? "page" : ""}
                 href="/myProfilePage"
               >
                 MyProfile
@@ -32,12 +39,20 @@ const NavBar = (props) => {
             </li>
 
             <li className="nav-item">
-              <a className="nav-link" href="/search">
+              <a
+                className={props.tabActive === "2" ? "nav-link active" : "nav-link"}
+                aria-current={props.tabActive === "2" ? "page" : ""}
+              >
                 Find Friends
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about" tabIndex="-1">
+              <a
+                className={props.tabActive === "3" ? "nav-link active" : "nav-link"}
+                aria-current={props.tabActive === "3" ? "page" : ""}
+                href="/about"
+                tabIndex="-1"
+              >
                 About Site
               </a>
             </li>

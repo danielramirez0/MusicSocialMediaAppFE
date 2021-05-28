@@ -3,7 +3,7 @@ const Home = (props) => {
   return (
     <div className="container">
       <div className="pb-5">
-        <NavBar userLoggedIn={false} />
+        <NavBar userLoggedIn={true} tabActive="0" />
       </div>
       <div className="pt-4">
         <h1 className="">

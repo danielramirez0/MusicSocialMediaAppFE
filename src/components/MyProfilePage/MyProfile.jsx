@@ -9,7 +9,7 @@ const MyProfilePage = () => {
   return (
     <div className="container">
       <div className="pb-5">
-        <NavBar userLoggedIn={true} />
+        <NavBar userLoggedIn={true} tabActive="1" />
       </div>
       <div className="container pt-4">
         <div className="bio-friends">

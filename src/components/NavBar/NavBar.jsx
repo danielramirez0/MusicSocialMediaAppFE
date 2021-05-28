@@ -42,6 +42,7 @@ const NavBar = (props) => {
               <a
                 className={props.tabActive === "2" ? "nav-link active" : "nav-link"}
                 aria-current={props.tabActive === "2" ? "page" : ""}
+                href="/search"
               >
                 Find Friends
               </a>

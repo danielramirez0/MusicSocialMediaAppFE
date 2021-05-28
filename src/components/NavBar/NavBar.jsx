@@ -60,9 +60,9 @@ const NavBar = (props) => {
           </ul>
           {props.userLoggedIn === false ? (
             <>
-              <button className="btn btn-outline-primary" href="/register">
+              <a className="btn btn-outline-primary" href="/register">
                 Register
-              </button>
+              </a>
               <a className="nav-link" href="/login">
                 Sign In
               </a>

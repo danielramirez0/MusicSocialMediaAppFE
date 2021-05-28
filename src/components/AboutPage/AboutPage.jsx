@@ -1,12 +1,12 @@
 import NavBar from "../NavBar/NavBar";
-const Home = (props) => {
+const AboutPage = (props) => {
   return (
     <div className="container">
       <div className="pb-5">
-        <NavBar userLoggedIn={true} tabActive="0" />
+        <NavBar userLoggedIn={false} tabActive="3" />
       </div>
       <div className="pt-4">
-        <h1 className="">It's the Home page!</h1>
+        <h1 className="">Welcome to the About Page!</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti expedita quos sint odit.
           Atque saepe quod similique aliquid minus distinctio eveniet perspiciatis laborum provident
@@ -72,4 +72,4 @@ const Home = (props) => {
   );
 };
 
-export default Home;
+export default AboutPage;

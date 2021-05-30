@@ -17,8 +17,6 @@ const FriendsList = (props) => {
   console.log('fetch');
   fetchData();
   }, [])
-  console.log(friendList[0])
-
 
 
   if(loading === true){
@@ -37,10 +35,20 @@ const FriendsList = (props) => {
         <div>
           {friendList[0].friends.map((friend)=>{
             return(
-              <div>
+              <div key={friend._id}>
                 <ul>
                   <li>
-                    {friend.name}
+                    <div className="friend">
+                      <div>
+                        <img src="https://www.bing.com/th?id=OIP.EqEEdh6OMHDREgIw0izqzgHaEK&w=251&h=137&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2" alt="catpic" />
+                      </div>
+                      <div>
+                        {friend.name}
+                      </div>
+                      <div>
+                        <button>Delete</button>
+                      </div>
+                    </div>
                   </li>
                 </ul>
               </div>

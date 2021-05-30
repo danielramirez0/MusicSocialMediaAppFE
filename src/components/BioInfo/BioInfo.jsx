@@ -1,8 +1,7 @@
 import React from "react";
 import "./BioInfo.css";
-import UserData from '../UserData/UserData';
 
-const BioInfo = () => {
+const BioInfo = (props) => {
   return (
     <div>
       <div className="bio-info">
@@ -13,11 +12,18 @@ const BioInfo = () => {
           />
         </div>
         <div className="about-me">
-          <UserData />
-{/*           <h4>About me</h4>
-          <p>favorite artist</p>
-          <p>favorite album</p>
-          <p>favorite song</p> */}
+          <div>
+            <p>Name: {props.userData.firstName} {props.userData.lastName}</p>
+          </div>
+          <div>
+            <p>Favorite Artist: {props.userData.favoriteArtist}</p>
+          </div>
+          <div>
+            <p>Favorite Song: {props.userData.favoriteSong}</p>
+          </div>
+          <div>
+            <p>Favorite Album: {props.userData.favoriteAlbum}</p>
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import "./BioInfo.css";
+import UserData from '../UserData/UserData';
 
 const BioInfo = () => {
   return (
@@ -12,10 +13,11 @@ const BioInfo = () => {
           />
         </div>
         <div className="about-me">
-          <h4>About me</h4>
+          <UserData />
+{/*           <h4>About me</h4>
           <p>favorite artist</p>
           <p>favorite album</p>
-          <p>favorite song</p>
+          <p>favorite song</p> */}
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import FriendsList from "../FriendsList/FriendsList";
 import AddPost from "../AddPost/AddPost";
 import PostFeed from "../PostFeed/PostFeed";
 import "./MyProfile.css";
+
 const MyProfilePage = () => {
   return (
     <div className="container">

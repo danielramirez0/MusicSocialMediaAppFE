@@ -1,7 +1,33 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "./FriendsList.css";
 
 const FriendsList = (props) => {
+  const [friendList , setFriendsList] = useState([]);
+  const [loading, setLoading] =useState(true)
+  
+  useEffect(()=>{
+    const fetchData = async () => {
+      const result = await axios(
+          "http://localhost:5000/api/users/",
+      );
+      setFriendsList(result.data);
+      setLoading(false)
+  }
+  console.log('fetch');
+  fetchData();
+  }, [])
+  console.log(friendList[0])
+
+
+
+  if(loading === true){
+    return(
+      <div>
+        <h3>Loading</h3>
+      </div>
+    )
+  }else
   return (
     <div>
       <div className="container-friends-list">
@@ -9,48 +35,17 @@ const FriendsList = (props) => {
           <h4>Friends List</h4>
         </div>
         <div>
-          <ul>
-            <li>
-              <div className="friend">
-                <img
-                  src="https://www.bing.com/th?id=OIP.EqEEdh6OMHDREgIw0izqzgHaEK&w=196&h=98&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-                  alt=""
-                />
-                <p>friend one</p>
-                <button>delete</button>
+          {friendList[0].friends.map((friend)=>{
+            return(
+              <div>
+                <ul>
+                  <li>
+                    {friend.name}
+                  </li>
+                </ul>
               </div>
-            </li>
-            <li>
-              <div className="friend">
-                <img
-                  src="https://www.bing.com/th?id=OIP.EqEEdh6OMHDREgIw0izqzgHaEK&w=196&h=98&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-                  alt=""
-                />
-                <p>friend two</p>
-                <button>delete</button>
-              </div>
-            </li>
-            <li>
-              <div className="friend">
-                <img
-                  src="https://www.bing.com/th?id=OIP.EqEEdh6OMHDREgIw0izqzgHaEK&w=196&h=98&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-                  alt=""
-                />
-                <p>friend three</p>
-                <button>delete</button>
-              </div>
-            </li>
-            <li>
-              <div className="friend">
-                <img
-                  src="https://www.bing.com/th?id=OIP.EqEEdh6OMHDREgIw0izqzgHaEK&w=196&h=98&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-                  alt=""
-                />
-                <p>friend four</p>
-                <button>delete</button>
-              </div>
-            </li>
-          </ul>
+            )
+          })}
         </div>
       </div>
     </div>

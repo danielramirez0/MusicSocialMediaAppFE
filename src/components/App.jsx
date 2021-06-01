@@ -8,21 +8,35 @@ import AboutPage from "./AboutPage/AboutPage";
 import LoginPage from "./LoginPage/LoginPage";
 import RegisterPage from "./RegisterPage/RegisterPage";
 import SearchPage from "./SearchPage/SearchPage";
+import axios from 'axios';
 
 function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
 
   const [jwt, setJwt] = useState(() => localStorage.getItem("token"));
+  const [loading, setLoading] =useState(true);
   const [user, setUser] = useState();
   const history = useHistory();
-  useEffect(() => {
-    setJwt(() => {
-      try {
-        const data = jwtDecode(jwt);
-        setUser(data);
-      } catch (error) {}
-    });
-  }, [user]);
+  // useEffect(() => {
+  //   setJwt(() => {
+  //     try {
+  //       const data = jwtDecode(jwt);
+  //       setUser(data);
+  //     } catch (error) {}
+  //   });
+  // }, [user]);
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      const result = await axios(
+          "http://localhost:5000/api/users/",
+      );
+      setUser(result.data[0]);
+      setLoading(false)
+  }
+  console.log('fetch');
+  fetchData();
+  },[])
 
   function logout() {
     try {
@@ -42,7 +56,7 @@ function App() {
         <Route path="/" exact component={Home} />
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
-        <Route path="/myProfilePage" component={MyProfilePage} />
+        <Route path="/myProfilePage" render={(props)=> <MyProfilePage {...props} user={user} loading={loading}/>} />
         <Route path="/about" component={AboutPage} />
         <Route path="/search" component={SearchPage} />
 

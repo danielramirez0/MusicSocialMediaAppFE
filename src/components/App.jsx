@@ -1,4 +1,6 @@
 import "./App.css";
+import React, { useState, useEffect } from "react";
+import jwtDecode from "jwt-decode";
 import { Switch, Route } from "react-router-dom";
 import MyProfilePage from "./MyProfilePage/MyProfile";
 import Home from "./Home/Home";
@@ -8,6 +10,14 @@ import RegisterPage from "./RegisterPage/RegisterPage";
 import SearchPage from "./SearchPage/SearchPage";
 
 function App() {
+  const [jwt, setJwt] = useState(() => localStorage.getItem("token"));
+  const [user, setUser] = useState();
+  try {
+    const user = jwtDecode(jwt);
+    setUser(user);
+    console.log(user, jwt);
+  } catch (error) {}
+
   return (
     <div>
       <Switch>

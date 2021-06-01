@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./FriendsList.css";
 
 const FriendsList = (props) => {
@@ -9,48 +9,27 @@ const FriendsList = (props) => {
           <h4>Friends List</h4>
         </div>
         <div>
-          <ul>
-            <li>
-              <div className="friend">
-                <img
-                  src="https://www.bing.com/th?id=OIP.EqEEdh6OMHDREgIw0izqzgHaEK&w=196&h=98&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-                  alt=""
-                />
-                <p>friend one</p>
-                <button>delete</button>
+          {props.friends.map((friend)=>{
+            return(
+              <div key={friend._id}>
+                <ul>
+                  <li>
+                    <div className="friend">
+                      <div>
+                        <img src="https://www.bing.com/th?id=OIP.EqEEdh6OMHDREgIw0izqzgHaEK&w=251&h=137&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2" alt="catpic" />
+                      </div>
+                      <div>
+                        {friend.name}
+                      </div>
+                      <div>
+                        <button>Delete</button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
-            </li>
-            <li>
-              <div className="friend">
-                <img
-                  src="https://www.bing.com/th?id=OIP.EqEEdh6OMHDREgIw0izqzgHaEK&w=196&h=98&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-                  alt=""
-                />
-                <p>friend two</p>
-                <button>delete</button>
-              </div>
-            </li>
-            <li>
-              <div className="friend">
-                <img
-                  src="https://www.bing.com/th?id=OIP.EqEEdh6OMHDREgIw0izqzgHaEK&w=196&h=98&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-                  alt=""
-                />
-                <p>friend three</p>
-                <button>delete</button>
-              </div>
-            </li>
-            <li>
-              <div className="friend">
-                <img
-                  src="https://www.bing.com/th?id=OIP.EqEEdh6OMHDREgIw0izqzgHaEK&w=196&h=98&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-                  alt=""
-                />
-                <p>friend four</p>
-                <button>delete</button>
-              </div>
-            </li>
-          </ul>
+            )
+          })}
         </div>
       </div>
     </div>

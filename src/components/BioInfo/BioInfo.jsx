@@ -14,6 +14,7 @@ const BioInfo = () => {
         </div>
         <div className="about-me">
           <UserData />
+          <button>Edit Information</button>
 {/*           <h4>About me</h4>
           <p>favorite artist</p>
           <p>favorite album</p>

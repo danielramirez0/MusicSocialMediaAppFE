@@ -1,5 +1,6 @@
 // import jwtDecode from "jwt-decode";
 import {useEffect, useState} from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 import useForm from "../useForm/useForm";
@@ -8,6 +9,7 @@ const EditUserData = () => {
     const { values, handleChange, handleSubmit } = useForm(editData);
     const [loading, setLoading] = useState(true);
     const [userData , setUserData] = useState([]);
+    const history = useHistory();
 
     async function editData() {
         console.log('pre', values);
@@ -17,6 +19,7 @@ const EditUserData = () => {
         .then((response) => {
             alert("User Information Updated!");
             console.log(response);
+            history.push("/myProfilePage");
         })
         .catch((error) => {
             console.log(error);

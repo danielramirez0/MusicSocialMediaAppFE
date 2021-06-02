@@ -16,8 +16,6 @@ const RegisterPage = () => {
     await axios
       .post("http://localhost:5000/api/users/", newUser)
       .then((response) => {
-        console.log(response.headers);
-        console.log(response.data);
         localStorage.setItem("token", response.headers["x-auth-token"]);
         userHasAuthenticated(true);
         setUser(response.data);

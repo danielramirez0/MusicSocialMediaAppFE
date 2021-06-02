@@ -21,12 +21,15 @@ function App() {
     onLoad();
   }, []);
 
+  useEffect(() => {
+    setJwt(localStorage.getItem("token"));
+  }, [isAuthenticating]);
+
   async function onLoad() {
     if (jwt !== null) {
       try {
         setUser(jwtDecode(jwt));
         userHasAuthenticated(true);
-        console.log(user);
       } catch (error) {
         if (error !== "InvalidTokenError: Invalid token specified") {
           console.log("No user logged in");

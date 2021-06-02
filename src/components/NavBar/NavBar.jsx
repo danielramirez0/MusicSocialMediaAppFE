@@ -1,13 +1,16 @@
 import { useHistory } from "react-router-dom";
 import logo from "../../img/headphones.png";
+import { useAppContext } from "../../libs/contextLib";
 
 const NavBar = (props) => {
   const history = useHistory();
+  const { isAuthenticated, userHasAuthenticated } = useAppContext();
 
   function logout() {
     try {
       localStorage.removeItem("token");
-      alert("Come back soon!");
+      // alert("Come back soon!");
+      userHasAuthenticated(false);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -39,7 +42,7 @@ const NavBar = (props) => {
           <li className="nav-item">
             <a
               className={`${props.tabActive === "1" ? "nav-link active" : "nav-link"} ${
-                props.userLoggedIn === true ? null : "disabled"
+                isAuthenticated === true ? null : "disabled"
               }`}
               aria-current={props.tabActive === "1" ? "page" : ""}
               href="/myProfilePage"
@@ -68,7 +71,7 @@ const NavBar = (props) => {
             </a>
           </li>
         </ul>
-        {props.userLoggedIn === false ? (
+        {isAuthenticated === false ? (
           <>
             <a className="btn btn-outline-primary" href="/register">
               Register

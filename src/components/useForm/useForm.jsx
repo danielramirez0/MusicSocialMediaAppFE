@@ -2,9 +2,29 @@ import { useState } from "react";
 
 const useForm = (callback) => {
   const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     event.persist();
+
+    // User Registration Validation
+    switch (event.target.name) {
+      case "password":
+        setErrors((errors) => ({
+          ...errors,
+          password: event.target.value.length < 5 ? "Password must be at least 5 characters" : null,
+        }));
+        break;
+      case "confirmPassword":
+        setErrors((errors) => ({
+          ...errors,
+          confirmPassword:
+            event.target.value !== values.password ? "Passwords do not match!" : null,
+        }));
+        break;
+      default:
+        break;
+    }
 
     setValues((values) => ({ ...values, [event.target.name]: event.target.value }));
   };
@@ -14,7 +34,7 @@ const useForm = (callback) => {
 
     callback();
   };
-  return { values, handleChange, handleSubmit };
+  return { errors, values, handleChange, handleSubmit };
 };
 
 export default useForm;

@@ -2,14 +2,18 @@
   margin: auto;
 }
 
-#login-container {
-  margin-top: 20%;
+#register-container {
+  margin-top: 10%;
 }
 
-.small-box {
+.full-box {
   padding: 5px;
-  width: 270px;
+  width: 500px;
   border-style: groove;
   border-radius: 10px;
   border-color: lightblue;
+}
+
+.errors {
+  color: red;
 }

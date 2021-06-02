@@ -38,8 +38,8 @@ function App() {
 
   return (
     !isAuthenticating && (
-      <div>
-        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+      <div className="container h-100 w-100">
+        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated, user, setUser }}>
           <Switch>
             {/* <Route path="/login" render={(props) => <LoginPage {...props} login={true} />} /> */}
             {/* <Route path="/logout" render={(props) => <LoginPage {...props} login={false} />} /> */}

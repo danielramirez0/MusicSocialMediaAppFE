@@ -8,7 +8,7 @@ import { useAppContext } from "../../libs/contextLib";
 
 const LoginPage = (props) => {
   const { values, handleChange, handleSubmit } = useForm(login);
-  const { userHasAuthenticated } = useAppContext();
+  const { isAuthenticated, userHasAuthenticated } = useAppContext();
   const history = useHistory();
 
   async function login() {
@@ -25,62 +25,60 @@ const LoginPage = (props) => {
         alert(error.response.data);
       });
   }
-  //   const token = localStorage.getItem("token");
-  //   try {
-  //     const user = jwtDecode(token);
-  //     alert(`Welcome back! ${user.firstName}`);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   return (
     <div className="container">
       <div className="pb-5">
-        <NavBar userLoggedIn={false} tabActive="n/a" />
+        <NavBar isAuthenticated={isAuthenticated} tabActive="n/a" />
       </div>
-      <div className="center center-vertical small-box">
-        <h1 className="text-center">User Login</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="userEmail" className="form-label">
-              Email address
-            </label>
-            <input
-              className="form-control"
-              type="email"
-              name="email"
-              id="userEmail"
-              aria-describedby="emailHelp"
-              value={values.email || ""}
-              onChange={handleChange}
-              required={true}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="userPassword" className="form-label">
-              Password
-            </label>
-            <input
-              className="form-control"
-              type="password"
-              name="password"
-              id="userPassword"
-              value={values.password || ""}
-              onChange={handleChange}
-              required={true}
-            />
-          </div>
-          <div className="mb-3 form-check">
-            <input type="checkbox" className="form-check-input" id="rememberMe" />
-            <label className="form-check-label" htmlFor="rememberMe">
+      <div className="center" id="login-container">
+        <div className="center small-box">
+          <h1 className="text-center">User Login</h1>
+          {!isAuthenticated ? (
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="userEmail" className="form-label">
+                  Email address
+                </label>
+                <input
+                  className="form-control"
+                  type="email"
+                  name="email"
+                  id="userEmail"
+                  aria-describedby="emailHelp"
+                  value={values.email || ""}
+                  onChange={handleChange}
+                  required={true}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="userPassword" className="form-label">
+                  Password
+                </label>
+                <input
+                  className="form-control"
+                  type="password"
+                  name="password"
+                  id="userPassword"
+                  value={values.password || ""}
+                  onChange={handleChange}
+                  required={true}
+                />
+              </div>
+              {/* <div className="mb-3 form-check">
+              <input type="checkbox" className="form-check-input" id="rememberMe" />
+              <label className="form-check-label" htmlFor="rememberMe">
               Remember me
-            </label>
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+              </label>
+            </div> */}
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </form>
+          ) : (
+            <h5>Looks like you're already logged in, bro.</h5>
+          )}
+        </div>
       </div>
     </div>
   );

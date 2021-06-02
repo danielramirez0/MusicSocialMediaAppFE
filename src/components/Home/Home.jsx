@@ -1,9 +1,10 @@
 import NavBar from "../NavBar/NavBar";
+
 const Home = (props) => {
   return (
     <div className="container">
       <div className="pb-5">
-        <NavBar userLoggedIn={true} tabActive="0" />
+        <NavBar tabActive="0" />
       </div>
       <div className="pt-4">
         <h1 className="">It's the Home page!</h1>

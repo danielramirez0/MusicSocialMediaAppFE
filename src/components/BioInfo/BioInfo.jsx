@@ -1,33 +1,41 @@
-import React from "react";
 import "./BioInfo.css";
+import { useAppContext } from "../../libs/contextLib";
 
-const BioInfo = (props) => {
+const BioInfo = () => {
+  const { user, isAuthenticated } = useAppContext();
+
   return (
-    <div>
-      <div className="bio-info">
-        <div className="profile-pic">
-          <img
-            src="https://www.bing.com/th?id=OIP.N8rKfbKT-MHFneNrhohDKgHaEo&w=155&h=100&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-            alt="tiger pic"
-          />
-        </div>
-        <div className="about-me">
-          <div>
-            <p>Name: {props.userData.firstName} {props.userData.lastName}</p>
+    isAuthenticated && (
+      <div>
+        <div className="bio-info">
+          <div className="profile-pic">
+            <img
+              src="https://www.bing.com/th?id=OIP.N8rKfbKT-MHFneNrhohDKgHaEo&w=155&h=100&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+              alt="tiger pic"
+            />
           </div>
-          <div>
-            <p>Favorite Artist: {props.userData.favoriteArtist}</p>
+          <div className="about-me">
+            <div>
+              <p>
+                Name: {user.firstName} {user.lastName}
+              </p>
+            </div>
+            <div>
+              <p>Favorite Artist: {user.favoriteArtist}</p>
+            </div>
+            <div>
+              <p>Favorite Song: {user.favoriteSong}</p>
+            </div>
+            <div>
+              <p>Favorite Album: {user.favoriteAlbum}</p>
+            </div>
+            <a className="nav-link" href="/editUserData">
+              Edit Information!
+            </a>
           </div>
-          <div>
-            <p>Favorite Song: {props.userData.favoriteSong}</p>
-          </div>
-          <div>
-            <p>Favorite Album: {props.userData.favoriteAlbum}</p>
-          </div>
-          <a class="nav-link" href="/editUserData">Edit Information!</a>
         </div>
       </div>
-    </div>
+    )
   );
 };
 

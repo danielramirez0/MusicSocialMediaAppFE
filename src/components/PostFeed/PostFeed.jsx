@@ -1,32 +1,31 @@
 import React from "react";
 import "./PostFeed.css";
 
-const PostFeed = () => {
-  return (
-    <div>
-      <div className="post-container">
-        <div className="post-user-pic">
-          <img
-            src="https://th.bing.com/th/id/OIP.GNaJoPDZ6uAasoCiA2DEewHaNK?w=115&h=183&c=7&o=5&pid=1.7"
-            alt=""
-          />
-        </div>
-        <div className="post">
-          <h4>Users Name</h4>
-          <p>
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-            architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-            sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione "
-          </p>
-        </div>
-        <div className="post-buttons">
-          <button>Likes: </button>
-          <button>Dislikes: </button>
-        </div>
+const PostFeed = (props) => {
+  if(props.postFeed.length === 0){
+    return(
+      <div>
+        <h3>There are no post in this feed</h3>
       </div>
-    </div>
-  );
+    );
+  }else{
+    {props.postFeed.map((post)=>{
+      return(
+        <div className="post-container">
+          <div className="post-user-pic">
+            <img src="https://www.bing.com/th?id=OIP.N8rKfbKT-MHFneNrhohDKgHaEo&w=155&h=100&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="" />
+          </div>
+          <div className="post-body">
+            {props.post.body}
+          </div>
+          <div>
+            <button>Likes: {post.likes}</button>
+            <button>Dislikes: {post.dislikes}</button>
+          </div>
+        </div>
+      )
+    })}
+  }
 };
 
 export default PostFeed;

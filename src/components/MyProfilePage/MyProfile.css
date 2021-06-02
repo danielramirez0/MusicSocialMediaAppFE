@@ -1,6 +1,6 @@
 .bio-friends{
     display: flex;
-    /* justify-content: space-around; */
+    justify-content: space-around;
 }
 
 .friends-list{

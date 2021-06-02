@@ -4,27 +4,17 @@ import BioInfo from "../BioInfo/BioInfo";
 import FriendsList from "../FriendsList/FriendsList";
 import AddPost from "../AddPost/AddPost";
 import PostFeed from "../PostFeed/PostFeed";
-import {useEffect, useState} from 'react';
 import axios from 'axios';
 import "./MyProfile.css";
 
-const MyProfilePage = () => {
-  const [userData , setUserData] = useState([]);
-  const [loading, setLoading] = useState(true)
-  
-  useEffect(()=>{
-    const fetchData = async () => {
-      const result = await axios(
-          "http://localhost:5000/api/users/",
-      );
-      setUserData(result.data[0]);
-      setLoading(false)
-  }
-  console.log('fetch');
-  fetchData();
-  }, [])
+const MyProfilePage = (props) => {
 
-  if(loading === true){
+ const addAPost = (newPost)=>{
+   axios.post(`http://localhost:5000/api/${props.user._id}/post`, newPost)
+   .then(console.log(newPost))
+ }
+
+  if(props.loading === true){
     return(
       <div>
         Loading...
@@ -39,12 +29,12 @@ const MyProfilePage = () => {
       <div className="container pt-4">
         <div className="bio-friends">
           <div>
-            <BioInfo userData={userData}/>
-            <AddPost />
-            <PostFeed postFeed={userData.posts} />
+            <BioInfo userData={props.user}/>
+            <AddPost addAPost={addAPost}/>
+            <PostFeed postFeed={props.user.posts} />
           </div>
           <div className="friends-list">
-            <FriendsList friends={userData.friends} />
+            <FriendsList friends={props.user.friends} />
           </div>
         </div>
       </div>

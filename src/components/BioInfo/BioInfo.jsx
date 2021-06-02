@@ -24,6 +24,7 @@ const BioInfo = (props) => {
           <div>
             <p>Favorite Album: {props.userData.favoriteAlbum}</p>
           </div>
+          <a class="nav-link" href="/editUserData">Edit Information!</a>
         </div>
       </div>
     </div>

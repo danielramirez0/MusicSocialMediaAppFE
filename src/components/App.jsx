@@ -9,6 +9,7 @@ import LoginPage from "./LoginPage/LoginPage";
 import RegisterPage from "./RegisterPage/RegisterPage";
 import SearchPage from "./SearchPage/SearchPage";
 import { AppContext } from "../libs/contextLib";
+import EditUserData from "./EditUserData/EditUserData";
 
 function App() {
   const [user, setUser] = useState();
@@ -48,7 +49,7 @@ function App() {
             <Route path="/myProfilePage" component={MyProfilePage} />
             <Route path="/about" component={AboutPage} />
             <Route path="/search" component={SearchPage} />
-
+            <Route path="/editUserData" component={EditUserData} />
             {/* <Route path="/otherUserProfilePage" component={OtherUserProfilePage} /> */}
             {/* <Route path="/searchUserPage" component={SearchUserPage} /> */}
           </Switch>

@@ -28,7 +28,7 @@ function App() {
   async function onLoad() {
     if (jwt !== null) {
       try {
-        setUser(jwtDecode(jwt));
+        await setUser(jwtDecode(jwt));
         userHasAuthenticated(true);
       } catch (error) {
         if (error !== "InvalidTokenError: Invalid token specified") {
@@ -42,7 +42,9 @@ function App() {
   return (
     !isAuthenticating && (
       <div className="container h-100 w-100">
-        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated, user, setUser }}>
+        <AppContext.Provider
+          value={{ isAuthenticated, userHasAuthenticated, user, setUser, jwt, setJwt }}
+        >
           <Switch>
             {/* <Route path="/login" render={(props) => <LoginPage {...props} login={true} />} /> */}
             {/* <Route path="/logout" render={(props) => <LoginPage {...props} login={false} />} /> */}

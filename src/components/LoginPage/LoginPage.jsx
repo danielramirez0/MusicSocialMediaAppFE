@@ -1,14 +1,14 @@
-// import jwtDecode from "jwt-decode";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 import useForm from "../useForm/useForm";
 import "./LoginPage.css";
 import { useAppContext } from "../../libs/contextLib";
+import jwtDecode from "jwt-decode";
 
 const LoginPage = (props) => {
   const { values, handleChange, handleSubmit } = useForm(login);
-  const { isAuthenticated, userHasAuthenticated } = useAppContext();
+  const { setUser, isAuthenticated, userHasAuthenticated } = useAppContext();
   const history = useHistory();
 
   async function login() {
@@ -16,8 +16,13 @@ const LoginPage = (props) => {
       .post("http://localhost:5000/api/auth", values)
       .then((response) => {
         localStorage.setItem("token", response.data);
-        // alert("Logged in");
         userHasAuthenticated(true);
+        const jwt = localStorage.getItem("token");
+        try {
+          setUser(jwtDecode(jwt));
+        } catch (error) {
+          console.log(error);
+        }
         history.push("/myProfilePage");
       })
       .catch((error) => {
@@ -29,7 +34,7 @@ const LoginPage = (props) => {
   return (
     <div className="container">
       <div className="pb-5">
-        <NavBar isAuthenticated={isAuthenticated} tabActive="n/a" />
+        <NavBar tabActive="n/a" />
       </div>
       <div className="center" id="login-container">
         <div className="center small-box">
@@ -65,12 +70,6 @@ const LoginPage = (props) => {
                   required={true}
                 />
               </div>
-              {/* <div className="mb-3 form-check">
-              <input type="checkbox" className="form-check-input" id="rememberMe" />
-              <label className="form-check-label" htmlFor="rememberMe">
-              Remember me
-              </label>
-            </div> */}
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>

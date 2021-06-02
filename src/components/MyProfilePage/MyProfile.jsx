@@ -4,24 +4,10 @@ import BioInfo from "../BioInfo/BioInfo";
 import FriendsList from "../FriendsList/FriendsList";
 import AddPost from "../AddPost/AddPost";
 import PostFeed from "../PostFeed/PostFeed";
-import {useEffect, useState} from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import "./MyProfile.css";
-import axios from "axios";
 
 const MyProfilePage = (props) => {
-  
-  // useEffect(()=>{
-  //   const fetchData = async () => {
-  //     const result = await axios(
-  //         "http://localhost:5000/api/users/",
-  //     );
-  //     setUserData(result.data[0]);
-  //     setLoading(false)
-  // }
-  // console.log('fetch');
-  // fetchData();
-  // }, [])
 
  const addAPost = (newPost)=>{
    axios.post(`http://localhost:5000/api/${props.user._id}/post`, newPost)

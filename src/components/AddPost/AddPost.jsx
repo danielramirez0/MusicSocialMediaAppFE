@@ -10,19 +10,20 @@ const AddPost = (props) => {
     setText(event.target.value);
   }
 
-  const handleClick = ()=>{
+  const handleClick = (event)=>{
+    event.preventDefault();
     const newPost={
-      text:text
+      body:text
     }
     props.addAPost(newPost);
   }
   return (
     <div>
       <div className="post-form">
-        <form action="sumbit">
+        <form action="submit">
           <label htmlFor="">Add Post: </label>
           <textarea name="addPost" cols="60" rows="5" placeholder="Add new post" value={text} onChange={handleChange}></textarea>
-          <button onClick={handleClick}>Add Post</button>
+          <button onClick={(event)=>handleClick(event)}>Add Post</button>
         </form>
       </div>
     </div>

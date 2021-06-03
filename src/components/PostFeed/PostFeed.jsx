@@ -4,6 +4,7 @@ import { useAppContext } from "../../libs/contextLib";
 
 const PostFeed = () => {
   const { loggedInUser } = useAppContext();
+  console.log(loggedInUser.posts)
   if (loggedInUser.posts.length === 0) {
     return (
       <div>
@@ -11,7 +12,7 @@ const PostFeed = () => {
       </div>
     );
   } else {
-    {
+    return(
       loggedInUser.posts.map((post) => {
         return (
           <div className="post-container">
@@ -28,9 +29,9 @@ const PostFeed = () => {
             </div>
           </div>
         );
-      });
+      })
+      )
     }
-  }
 };
 
 export default PostFeed;

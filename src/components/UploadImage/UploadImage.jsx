@@ -1,12 +1,10 @@
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 import React, {useState} from "react";
-import { useHistory } from "react-router-dom";
 import { useAppContext } from "../../libs/contextLib";
 
 const UploadImage = () => {
     const [fileName, setFileName] = useState('');
-    const history = useHistory();
     const { isAuthenticated } = useAppContext();
 
     const onChangeFile = (e) => {
@@ -18,14 +16,16 @@ const UploadImage = () => {
         e.preventDefault();
 
         var formData = new FormData();
-        
+        const photoName = JSON.stringify(fileName.name);
         formData.append("photo", fileName);
+        console.log(photoName);
+        console.log(fileName);
+        console.log(fileName.name);
 
         axios
-        .post("http://localhost:5000/api/users/60b83cb9abeb84f903933cfe/uploadPhoto", formData)
+        .post("http://localhost:5000/api/users/60b9571bfc2f1a02a530af18/uploadPhoto", formData)
         .then((response) => {
             console.log(response);
-            history.push("/myProfilePage");
         })
         .catch ((error) => {
             console.log(error);
@@ -47,7 +47,7 @@ return (
                     className ="form-control-file" 
                     onChange={onChangeFile}
                 />
-                <button onClick={fileUpload}>Upload</button>
+                <button onClick={(event) => fileUpload(event)}>Upload</button>
             </div>
         </form>
     </div>

@@ -12,45 +12,8 @@ const RegisterPage = () => {
   const history = useHistory();
   const [fileName, setFileName] = useState('');
 
-/*   const onChangeFile = (e) => {
-    console.log(e);
-    setFileName(e.target.files[0]);
-  } */
-
- /*  const changeOnClick = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-  
-    formData.append("photoImage", fileName);
-
-    axios
-      .post("http://localhost:5000/api/users/", formData)
-      .then((response) => {
-        localStorage.setItem("token", response.headers["x-auth-token"]);
-        userHasAuthenticated(true);
-        setUser(response.data);
-        history.push("/myProfilePage");
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log(error.response.data);
-    })
-  } */
-
   async function register() {
     const { confirmPassword, ...newUser } = values;
-  
-  
-    //formData.append("Test", 'test');
-/*     formData.append("firstName", newUser.firstName);
-    formData.append("lastName", newUser.lastName);
-    formData.append("email", newUser.email);
-    formData.append("password", newUser.password);
-    formData.append("favoriteArtist", newUser.favoriteArtist);
-    formData.append("favoriteAlbum", newUser.favoriteAlbum);
-    formData.append("favoriteSong", newUser.favoriteSong);
-    formData.append("photoImage", fileName); */
 
     console.log(fileName);
     console.log(values);

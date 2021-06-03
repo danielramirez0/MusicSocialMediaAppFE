@@ -7,11 +7,11 @@ import axios from "axios";
 import "./MyProfile.css";
 import { useAppContext } from "../../libs/contextLib";
 
-const MyProfilePage = (props) => {
-  const { isAuthenticated } = useAppContext();
+const MyProfilePage = () => {
+  const { loggedInUser, isAuthenticated } = useAppContext();
   const addAPost = (newPost) => {
     axios
-      .post(`http://localhost:5000/api/${props.user._id}/post`, newPost)
+      .post(`http://localhost:5000/api/${loggedInUser._id}/post`, newPost)
       .then(console.log(newPost));
   };
 
@@ -26,9 +26,11 @@ const MyProfilePage = (props) => {
             <div>
               <BioInfo />
               <AddPost addAPost={() => addAPost} />
-              {/* <PostFeed /> */}
+              <PostFeed />
             </div>
-            <div className="friends-list">{/* <FriendsList /> */}</div>
+            <div className="friends-list">
+              <FriendsList />
+            </div>
           </div>
         </div>
       </div>

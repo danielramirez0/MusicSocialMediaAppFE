@@ -12,7 +12,7 @@ import { AppContext } from "../libs/contextLib";
 import EditUserData from "./EditUserData/EditUserData";
 
 function App() {
-  const [user, setUser] = useState();
+  const [loggedInUser, setLoggedInUser] = useState();
   const [jwt, setJwt] = useState(() => localStorage.getItem("token"));
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
@@ -21,14 +21,24 @@ function App() {
     onLoad();
   }, []);
 
+  // useEffect(() => {
+  //   setJwt(localStorage.getItem("token"));
+  // }, [isAuthenticating]);
+
   useEffect(() => {
-    setJwt(localStorage.getItem("token"));
-  }, [isAuthenticating]);
+    if (jwt !== null) {
+      try {
+        setLoggedInUser(jwtDecode(jwt));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [jwt]);
 
   async function onLoad() {
     if (jwt !== null) {
       try {
-        await setUser(jwtDecode(jwt));
+        await setLoggedInUser(jwtDecode(jwt));
         userHasAuthenticated(true);
       } catch (error) {
         if (error !== "InvalidTokenError: Invalid token specified") {
@@ -43,7 +53,14 @@ function App() {
     !isAuthenticating && (
       <div className="container h-100 w-100">
         <AppContext.Provider
-          value={{ isAuthenticated, userHasAuthenticated, user, setUser, jwt, setJwt }}
+          value={{
+            isAuthenticated,
+            userHasAuthenticated,
+            loggedInUser,
+            setLoggedInUser,
+            jwt,
+            setJwt,
+          }}
         >
           <Switch>
             {/* <Route path="/login" render={(props) => <LoginPage {...props} login={true} />} /> */}

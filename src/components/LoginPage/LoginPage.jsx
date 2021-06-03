@@ -4,11 +4,10 @@ import NavBar from "../NavBar/NavBar";
 import useForm from "../useForm/useForm";
 import "./LoginPage.css";
 import { useAppContext } from "../../libs/contextLib";
-import jwtDecode from "jwt-decode";
 
 const LoginPage = (props) => {
   const { values, handleChange, handleSubmit } = useForm(login);
-  const { setUser, isAuthenticated, userHasAuthenticated } = useAppContext();
+  const { setJwt, isAuthenticated, userHasAuthenticated } = useAppContext();
   const history = useHistory();
 
   async function login() {
@@ -17,12 +16,7 @@ const LoginPage = (props) => {
       .then((response) => {
         localStorage.setItem("token", response.data);
         userHasAuthenticated(true);
-        const jwt = localStorage.getItem("token");
-        try {
-          setUser(jwtDecode(jwt));
-        } catch (error) {
-          console.log(error);
-        }
+        setJwt(localStorage.getItem("token"));
         history.push("/myProfilePage");
       })
       .catch((error) => {

@@ -2,7 +2,7 @@ import "./BioInfo.css";
 import { useAppContext } from "../../libs/contextLib";
 
 const BioInfo = () => {
-  const { user, isAuthenticated } = useAppContext();
+  const { loggedInUser, isAuthenticated } = useAppContext();
 
   return (
     isAuthenticated && (
@@ -17,17 +17,17 @@ const BioInfo = () => {
           <div className="about-me">
             <div>
               <p>
-                Name: {user.firstName} {user.lastName}
+                Name: {loggedInUser.firstName} {loggedInUser.lastName}
               </p>
             </div>
             <div>
-              <p>Favorite Artist: {user.favoriteArtist}</p>
+              <p>Favorite Artist: {loggedInUser.favoriteArtist}</p>
             </div>
             <div>
-              <p>Favorite Song: {user.favoriteSong}</p>
+              <p>Favorite Song: {loggedInUser.favoriteSong}</p>
             </div>
             <div>
-              <p>Favorite Album: {user.favoriteAlbum}</p>
+              <p>Favorite Album: {loggedInUser.favoriteAlbum}</p>
             </div>
             <a className="nav-link" href="/editUserData">
               Edit Information!

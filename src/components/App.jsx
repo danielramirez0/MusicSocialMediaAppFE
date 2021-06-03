@@ -10,6 +10,7 @@ import RegisterPage from "./RegisterPage/RegisterPage";
 import SearchPage from "./SearchPage/SearchPage";
 import { AppContext } from "../libs/contextLib";
 import EditUserData from "./EditUserData/EditUserData";
+import UploadImage from "./UploadImage/UploadImage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
@@ -72,6 +73,7 @@ function App() {
             <Route path="/about" component={AboutPage} />
             <Route path="/search" component={SearchPage} />
             <Route path="/editUserData" component={EditUserData} />
+            <Route path="/uploadImage" component={UploadImage} />
             {/* <Route path="/otherUserProfilePage" component={OtherUserProfilePage} /> */}
             {/* <Route path="/searchUserPage" component={SearchUserPage} /> */}
           </Switch>

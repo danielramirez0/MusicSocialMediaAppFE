@@ -12,10 +12,10 @@ const RegisterPage = () => {
   const history = useHistory();
   const [fileName, setFileName] = useState('');
 
-  const onChangeFile = (e) => {
+/*   const onChangeFile = (e) => {
     console.log(e);
     setFileName(e.target.files[0]);
-  }
+  } */
 
  /*  const changeOnClick = (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ const RegisterPage = () => {
   } */
 
   async function register() {
-    const { confirmPassword, ...newUser } = {...values, photoImage: fileName};
+    const { confirmPassword, ...newUser } = values;
   
   
     //formData.append("Test", 'test');
@@ -79,7 +79,7 @@ const RegisterPage = () => {
       <div className="center" id="register-container">
         <div className="center full-box">
           <h1 className="text-center">User Registration</h1>
-          <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <form onSubmit={handleSubmit} >
             <div className="input-group mb-3">
               <span className="input-group-text">First Name</span>
               <input
@@ -179,14 +179,6 @@ const RegisterPage = () => {
                 onChange={handleChange}
                 required={true}
               />
-              <div className="form-group">
-                <label>Choose profile picture</label>
-                <input 
-                type="file" 
-                name="photoImage" 
-                className ="form-control-file" 
-                onChange={onChangeFile}/>
-              </div>
             </div>
             <div className="text-center">
               <p>

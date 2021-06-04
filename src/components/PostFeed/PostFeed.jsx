@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./PostFeed.css";
 import { useAppContext } from "../../libs/contextLib";
+import axios from "axios";
 
 const PostFeed = () => {
   const { loggedInUser } = useAppContext();
-  console.log(loggedInUser.posts)
-  if (loggedInUser.posts.length === 0) {
+  const [currentPageOwner, setCurrentPageOwner]= useState('');
+  const [posts, setPosts]= useState([]);
+
+  useEffect(()=>{
+    setCurrentPageOwner('60afef7cc9a83f3c242b9593')
+  },[])
+
+
+  useEffect(()=>{
+    axios.get(`http://localhost:5000/api/posts/${currentPageOwner}`)
+    .then((response)=>setPosts(response.data))
+  },[currentPageOwner])
+
+  console.log(posts)
+  if (posts.length === 0) {
     return (
       <div>
         <h3>There are no post in this feed</h3>
@@ -13,7 +27,7 @@ const PostFeed = () => {
     );
   } else {
     return(
-      loggedInUser.posts.map((post) => {
+      posts.map((post) => {
         return (
           <div className="post-container">
             <div className="post-user-pic">

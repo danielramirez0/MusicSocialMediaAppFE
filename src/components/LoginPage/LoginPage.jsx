@@ -2,12 +2,13 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 import useForm from "../useForm/useForm";
+import jwtDecode from 'jwt-decode';
 import "./LoginPage.css";
 import { useAppContext } from "../../libs/contextLib";
 
 const LoginPage = (props) => {
   const { values, handleChange, handleSubmit } = useForm(login);
-  const { setJwt, isAuthenticated, userHasAuthenticated } = useAppContext();
+  const { setJwt, isAuthenticated, userHasAuthenticated, jwt, setLoggedInUser } = useAppContext();
   const history = useHistory();
 
   async function login() {
@@ -15,14 +16,23 @@ const LoginPage = (props) => {
       .post("http://localhost:5000/api/auth", values)
       .then((response) => {
         localStorage.setItem("token", response.data);
-        userHasAuthenticated(true);
         setJwt(localStorage.getItem("token"));
-        history.push("/myProfilePage");
+        try {
+          const loginJwt = localStorage.getItem('token')
+          const userInfo = jwtDecode(loginJwt)
+          axios.get(`http://localhost:5000/api/users/${userInfo._id}`)
+          .then((response)=>setLoggedInUser(response.data))
+          
+        } catch (error) {
+          console.log(error);
+        }
       })
       .catch((error) => {
         console.log(error);
         // alert(error.response.data);
       });
+      userHasAuthenticated(true);
+      history.push("/myProfilePage");
   }
 
   return (

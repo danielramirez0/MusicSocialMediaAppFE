@@ -10,6 +10,7 @@ import RegisterPage from "./RegisterPage/RegisterPage";
 import SearchPage from "./SearchPage/SearchPage";
 import { AppContext } from "../libs/contextLib";
 import EditUserData from "./EditUserData/EditUserData";
+import axios from "axios";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
@@ -25,20 +26,25 @@ function App() {
   //   setJwt(localStorage.getItem("token"));
   // }, [isAuthenticating]);
 
-  useEffect(() => {
-    if (jwt !== null) {
-      try {
-        setLoggedInUser(jwtDecode(jwt));
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }, [jwt]);
+  // useEffect(() => {
+  //   if (jwt !== null) {
+  //     try {
+  //       const userInfo = jwtDecode(jwt)
+  //       axios.get(`http://localhost:5000/api/users/${userInfo._id}`)
+  //       .then((response)=>setLoggedInUser(response.data))
+  
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // }, [jwt]);
 
   async function onLoad() {
     if (jwt !== null) {
       try {
-        await setLoggedInUser(jwtDecode(jwt));
+        const userInfo = jwtDecode(jwt)
+        await axios.get(`http://localhost:5000/api/users/${userInfo._id}`)
+        .then((response)=>setLoggedInUser(response.data))
         userHasAuthenticated(true);
       } catch (error) {
         if (error !== "InvalidTokenError: Invalid token specified") {

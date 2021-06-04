@@ -26,10 +26,6 @@ function App() {
     onLoad();
   }, []);
 
-  // useEffect(() => {
-  //   setJwt(localStorage.getItem("token"));
-  // }, [isAuthenticating]);
-
   useEffect(() => {
     if (jwt !== null) {
       try {

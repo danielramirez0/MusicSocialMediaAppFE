@@ -2,6 +2,7 @@ import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 import React, {useState} from "react";
 import { useAppContext } from "../../libs/contextLib";
+import "./UploadImage.css";
 
 const UploadImage = () => {
     const [fileName, setFileName] = useState('');
@@ -34,13 +35,14 @@ const UploadImage = () => {
     }
 
 return (
-    <div>
-{/*         <div>
+    <div className="container">
+        <div className ="pb-5">
         <NavBar isAuthenticated={isAuthenticated} tabActive="n/a" />
-        </div> */}
-        <form encType="multipart/form-data">
-            <div className="form-group">
-                <label>Choose profile picture</label>
+        </div>
+        <div className="center">
+        <form className ="center full-box" id="register-container" encType="multipart/form-data">
+            <div >
+                <label>Upload an image for your profile picture</label>
                 <input 
                     type="file" 
                     name="photoImage" 
@@ -50,6 +52,7 @@ return (
                 <button onClick={(event) => fileUpload(event)}>Upload</button>
             </div>
         </form>
+        </div>
     </div>
 )
 }

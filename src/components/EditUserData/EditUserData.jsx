@@ -5,6 +5,7 @@ import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 import useForm from "../useForm/useForm";
 import { useAppContext } from "../../libs/contextLib";
+import "./EditUserData.css";
 
 const EditUserData = () => {
     const { values, handleChange, handleSubmit } = useForm(editData);
@@ -52,8 +53,8 @@ const EditUserData = () => {
           <div className="pb-5">
             <NavBar userLoggedIn={true} tabActive="n/a" />
           </div>
-          <div className="center center-vertical small-box">
-            <h1 className="text-center">EditUserData</h1>
+          <div className="center center-vertical small-box" id="register-container">
+            <h1 className="text-center">Edit User Data</h1>
             <form onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="userFirstName" className="form-label">

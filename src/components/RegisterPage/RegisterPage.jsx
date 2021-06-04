@@ -19,7 +19,6 @@ const RegisterPage = () => {
     console.log(values);
 
     console.log(newUser);
-    
     await axios
       .post("http://localhost:5000/api/users/", newUser)
       .then((response) => {

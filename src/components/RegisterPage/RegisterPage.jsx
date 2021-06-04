@@ -4,15 +4,21 @@ import NavBar from "../NavBar/NavBar";
 import useForm from "../useForm/useForm";
 import "./RegisterPage.css";
 import { useAppContext } from "../../libs/contextLib";
+import React, {useState} from "react";
 
 const RegisterPage = () => {
   const { errors, values, handleChange, handleSubmit } = useForm(register);
   const { isAuthenticated, userHasAuthenticated, setUser } = useAppContext();
   const history = useHistory();
+  const [fileName, setFileName] = useState('');
 
   async function register() {
     const { confirmPassword, ...newUser } = values;
 
+    console.log(fileName);
+    console.log(values);
+
+    console.log(newUser);
     await axios
       .post("http://localhost:5000/api/users/", newUser)
       .then((response) => {
@@ -35,7 +41,7 @@ const RegisterPage = () => {
       <div className="center" id="register-container">
         <div className="center full-box">
           <h1 className="text-center">User Registration</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} >
             <div className="input-group mb-3">
               <span className="input-group-text">First Name</span>
               <input

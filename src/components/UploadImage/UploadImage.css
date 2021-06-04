@@ -1,0 +1,11 @@
+.full-box {
+	padding: 5px;
+	width: 500px;
+	border-style: groove;
+	border-radius: 10px;
+	border-color: lightblue;
+}
+
+#register-container {
+	margin-top: 10%;
+}

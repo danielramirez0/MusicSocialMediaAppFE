@@ -13,6 +13,7 @@ const BioInfo = () => {
               src="https://www.bing.com/th?id=OIP.N8rKfbKT-MHFneNrhohDKgHaEo&w=155&h=100&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
               alt="tiger pic"
             />
+            <a className="nav-link text-center" href="/uploadImage">Edit Profile Picture!</a>
           </div>
           <div className="about-me">
             <div>

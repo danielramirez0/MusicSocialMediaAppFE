@@ -4,16 +4,16 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 import useForm from "../useForm/useForm";
+import { useAppContext } from "../../libs/contextLib";
 
 const EditUserData = () => {
     const { values, handleChange, handleSubmit } = useForm(editData);
     const [loading, setLoading] = useState(true);
     const [userData , setUserData] = useState([]);
     const history = useHistory();
+    const { loggedInUser, isAuthenticated } = useAppContext();
 
     async function editData() {
-        console.log('pre', values);
-       
         await axios
         .put("http://localhost:5000/api/users/"+userData._id, values)
         .then((response) => {
@@ -30,9 +30,9 @@ const EditUserData = () => {
     useEffect(()=>{
     const fetchData = async () => {
         const result = await axios(
-            "http://localhost:5000/api/users/",
+            `http://localhost:5000/api/users/${loggedInUser._id}`,
         );
-        setUserData(result.data[3]);
+        setUserData(result.data);
         setLoading(false)
     }
     console.log('fetch');
@@ -47,8 +47,8 @@ const EditUserData = () => {
         )
       }else
     return (
+        isAuthenticated && (
         <div className="container">
-            {console.log('here', userData)}
           <div className="pb-5">
             <NavBar userLoggedIn={true} tabActive="n/a" />
           </div>
@@ -131,7 +131,8 @@ const EditUserData = () => {
             </form>
           </div>
         </div>
-      );
+      )
+    );
     };
 
 export default EditUserData;

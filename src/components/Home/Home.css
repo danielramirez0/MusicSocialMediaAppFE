@@ -18,9 +18,15 @@
   padding-top: 8.5rem;
 }
 
-#home-page-image {
+.home-page-image {
   height: 300px;
   width: 500px;
+  border-radius: 2rem;
+}
+
+.carousel-image {
+  height: 500px;
+  width: 700px;
   border-radius: 2rem;
 }
 

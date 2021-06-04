@@ -25,17 +25,19 @@ const MyProfilePage = () => {
         <div className="pb-5">
           <NavBar tabActive="1" />
         </div>
-        <div className="container pt-4">
-          <div className="bio-friends">
-            <div>
-              <BioInfo />
-              <AddPost addAPost={addAPost} />
-              <PostFeed />
-            </div>
-            <div className="friends-list">
-              <FriendsList />
-            </div>
+        <div className="row pt-6">
+          <div className="col-10">
+            <BioInfo />
           </div>
+          <div className="col-2">
+            <FriendsList />
+          </div>
+        </div>
+        <div className="col-4">
+          <AddPost addAPost={addAPost} />
+        </div>
+        <div className="col-4">
+          <PostFeed />
         </div>
       </div>
     )

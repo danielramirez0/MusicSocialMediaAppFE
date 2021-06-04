@@ -20,14 +20,17 @@ const SearchPage = () => {
           name: `${loggedInUser.firstName} ${loggedInUser.lastName}`,
         },
       };
-
       axios
         .post(
           `http://localhost:5000/api/users/${loggedInUser._id}/friends/${user._id}`,
           friendRequest,
           headers
         )
-        .then((response) => console.log(response));
+        .then((response) => {
+          alert(
+            `${response.data[0].firstName} sent ${response.data[1].firstName} a friend request!`
+          );
+        });
     } else {
       history.push("/login");
     }

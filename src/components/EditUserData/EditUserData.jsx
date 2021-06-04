@@ -1,5 +1,5 @@
 // import jwtDecode from "jwt-decode";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
@@ -8,47 +8,41 @@ import { useAppContext } from "../../libs/contextLib";
 import "./EditUserData.css";
 
 const EditUserData = () => {
-    const { values, handleChange, handleSubmit } = useForm(editData);
-    const [loading, setLoading] = useState(true);
-    const [userData , setUserData] = useState([]);
-    const history = useHistory();
-    const { loggedInUser, isAuthenticated } = useAppContext();
+  const { values, handleChange, handleSubmit } = useForm(editData);
+  const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState([]);
+  const history = useHistory();
+  const { headers, loggedInUser, isAuthenticated } = useAppContext();
 
-    async function editData() {
-        await axios
-        .put("http://localhost:5000/api/users/"+userData._id, values)
-        .then((response) => {
-            alert("User Information Updated!");
-            console.log(response);
-            history.push("/myProfilePage");
-        })
-        .catch((error) => {
-            console.log(error);
-            alert(error.response.data);
-        });
-      }
+  async function editData() {
+    await axios
+      .put("http://localhost:5000/api/users/" + userData._id, values, headers)
+      .then((response) => {
+        alert("User Information Updated!");
+        console.log(response);
+        history.push("/myProfilePage");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error.response.data);
+      });
+  }
 
-    useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
-        const result = await axios(
-            `http://localhost:5000/api/users/${loggedInUser._id}`,
-        );
-        setUserData(result.data);
-        setLoading(false)
-    }
-    console.log('fetch');
+      const result = await axios(`http://localhost:5000/api/users/${loggedInUser._id}`);
+      setUserData(result.data);
+      setLoading(false);
+    };
+    console.log("fetch");
     fetchData();
-    }, [])
+  }, []);
 
-    if(loading === true){
-        return(
-          <div>
-            Loading...
-          </div>
-        )
-      }else
+  if (loading === true) {
+    return <div>Loading...</div>;
+  } else
     return (
-        isAuthenticated && (
+      isAuthenticated && (
         <div className="container">
           <div className="pb-5">
             <NavBar userLoggedIn={true} tabActive="n/a" />
@@ -66,7 +60,7 @@ const EditUserData = () => {
                   type="text"
                   name="firstName"
                   id="userFirstName"
-                  value={values.firstName || ''}
+                  value={values.firstName || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -80,7 +74,7 @@ const EditUserData = () => {
                   type="text"
                   name="lastName"
                   id="userLastName"
-                  value={values.lastName || ''}
+                  value={values.lastName || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -94,7 +88,7 @@ const EditUserData = () => {
                   type="text"
                   name="favoriteArtist"
                   id="favoriteArtist"
-                  value={values.favoriteArtist || ''}
+                  value={values.favoriteArtist || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -108,7 +102,7 @@ const EditUserData = () => {
                   type="text"
                   name="favoriteAlbum"
                   id="favoriteAlbum"
-                  value={values.favoriteAlbum || ''}
+                  value={values.favoriteAlbum || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -122,7 +116,7 @@ const EditUserData = () => {
                   type="text"
                   name="favoriteSong"
                   id="favoriteSong"
-                  value={values.favoriteSong || ''}
+                  value={values.favoriteSong || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -134,6 +128,6 @@ const EditUserData = () => {
         </div>
       )
     );
-    };
+};
 
 export default EditUserData;

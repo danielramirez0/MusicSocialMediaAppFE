@@ -20,6 +20,7 @@ function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [allUsers, setAllUsers] = useState([]);
+  const [headers, setHeaders] = useState();
 
   useEffect(() => {
     onLoad();
@@ -37,6 +38,12 @@ function App() {
         console.log(error);
       }
     }
+    setHeaders({
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": `${jwt}`,
+      },
+    });
   }, [jwt]);
 
   async function onLoad() {
@@ -70,6 +77,8 @@ function App() {
             setJwt,
             allUsers,
             setAllUsers,
+            headers,
+            setHeaders,
           }}
         >
           <Switch>

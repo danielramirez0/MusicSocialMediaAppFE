@@ -6,7 +6,7 @@ import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 const SearchPage = () => {
-  const { allUsers, loggedInUser, jwt } = useAppContext();
+  const { headers, allUsers, loggedInUser } = useAppContext();
   const history = useHistory();
   const sendFriendRequest = (user) => {
     if (loggedInUser !== undefined) {
@@ -21,19 +21,11 @@ const SearchPage = () => {
         },
       };
 
-      const headers = {
-        "Content-Type": "application/json",
-        "x-auth-token": `${jwt}`,
-      };
-
-      console.log(headers);
       axios
         .post(
           `http://localhost:5000/api/users/${loggedInUser._id}/friends/${user._id}`,
           friendRequest,
-          {
-            headers: headers,
-          }
+          headers
         )
         .then((response) => console.log(response));
     } else {

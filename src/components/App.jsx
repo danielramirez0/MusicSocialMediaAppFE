@@ -12,14 +12,14 @@ import { AppContext } from "../libs/contextLib";
 import EditUserData from "./EditUserData/EditUserData";
 
 import UploadImage from "./UploadImage/UploadImage";
+import axios from "axios";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
   const [jwt, setJwt] = useState(() => localStorage.getItem("token"));
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
-
-
+  const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
     onLoad();
@@ -40,6 +40,10 @@ function App() {
   }, [jwt]);
 
   async function onLoad() {
+    axios.get("http://localhost:5000/api/users").then((response) => {
+      setAllUsers(response.data);
+    });
+
     if (jwt !== null) {
       try {
         await setLoggedInUser(jwtDecode(jwt));
@@ -53,7 +57,6 @@ function App() {
     setIsAuthenticating(false);
   }
 
-
   return (
     !isAuthenticating && (
       <div className="container h-100 w-100">
@@ -65,6 +68,8 @@ function App() {
             setLoggedInUser,
             jwt,
             setJwt,
+            allUsers,
+            setAllUsers,
           }}
         >
           <Switch>

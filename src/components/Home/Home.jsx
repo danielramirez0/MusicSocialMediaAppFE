@@ -1,6 +1,4 @@
 import NavBar from "../NavBar/NavBar";
-import React, { useState, useEffect } from "react";
-import { AppContext } from "../../libs/contextLib";
 import "./Home.css";
 
 const Home = () => {

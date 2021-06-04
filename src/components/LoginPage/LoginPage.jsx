@@ -5,9 +5,9 @@ import useForm from "../useForm/useForm";
 import "./LoginPage.css";
 import { useAppContext } from "../../libs/contextLib";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const { values, handleChange, handleSubmit } = useForm(login);
-  const { setJwt, isAuthenticated, userHasAuthenticated , setCurrentPageOwner} = useAppContext();
+  const { setJwt, isAuthenticated, userHasAuthenticated } = useAppContext();
   const history = useHistory();
 
   async function login() {
@@ -21,7 +21,7 @@ const LoginPage = (props) => {
       })
       .catch((error) => {
         console.log(error);
-        // alert(error.response.data);
+        alert(error.response.data);
       });
   }
 

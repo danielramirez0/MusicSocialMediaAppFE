@@ -16,6 +16,7 @@ const AddPost = (props) => {
       body:text
     }
     props.addAPost(newPost);
+    setText('')
   }
   return (
     <div>

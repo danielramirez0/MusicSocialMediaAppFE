@@ -2,7 +2,7 @@ import "./BioInfo.css";
 import { useAppContext } from "../../libs/contextLib";
 
 const BioInfo = () => {
-  const { loggedInUser, isAuthenticated } = useAppContext();
+  const { loggedInUser, isAuthenticated,} = useAppContext();
 
   return (
     isAuthenticated && (
@@ -17,7 +17,7 @@ const BioInfo = () => {
           <div className="about-me">
             <div>
               <p>
-                Name: {loggedInUser.firstName} {loggedInUser.lastName}
+               Name: {loggedInUser.firstName} {loggedInUser.lastName}
               </p>
             </div>
             <div>

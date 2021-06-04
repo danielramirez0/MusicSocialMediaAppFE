@@ -10,12 +10,15 @@ import RegisterPage from "./RegisterPage/RegisterPage";
 import SearchPage from "./SearchPage/SearchPage";
 import { AppContext } from "../libs/contextLib";
 import EditUserData from "./EditUserData/EditUserData";
+import axios from "axios";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
   const [jwt, setJwt] = useState(() => localStorage.getItem("token"));
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
+
+
 
   useEffect(() => {
     onLoad();
@@ -48,6 +51,7 @@ function App() {
     }
     setIsAuthenticating(false);
   }
+
 
   return (
     !isAuthenticating && (

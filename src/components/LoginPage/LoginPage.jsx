@@ -7,7 +7,7 @@ import { useAppContext } from "../../libs/contextLib";
 
 const LoginPage = (props) => {
   const { values, handleChange, handleSubmit } = useForm(login);
-  const { setJwt, isAuthenticated, userHasAuthenticated } = useAppContext();
+  const { setJwt, isAuthenticated, userHasAuthenticated , setCurrentPageOwner} = useAppContext();
   const history = useHistory();
 
   async function login() {

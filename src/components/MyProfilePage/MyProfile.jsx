@@ -8,10 +8,10 @@ import "./MyProfile.css";
 import { useAppContext } from "../../libs/contextLib";
 
 const MyProfilePage = () => {
-  const { loggedInUser, setLoggedInUser, isAuthenticated, jwt} = useAppContext();
+  const { loggedInUser, setLoggedInUser, isAuthenticated, jwt, } = useAppContext();
   const addAPost = (newPost) => {
     axios
-      .post(`http://localhost:5000/api/posts/${loggedInUser._id}/post`, newPost)
+      .post(`http://localhost:5000/api/posts/${loggedInUser._id}/post`, newPost, )
       .then((response)=> setLoggedInUser({...loggedInUser, posts: response.data}) )
       .catch((error) => {
         console.log(error);
@@ -33,7 +33,7 @@ const MyProfilePage = () => {
               <PostFeed />
             </div>
             <div className="friends-list">
-              <FriendsList />
+              <FriendsList/>
             </div>
           </div>
         </div>

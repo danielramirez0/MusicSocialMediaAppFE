@@ -1,18 +1,18 @@
-.post-container{
-    display: flex;
-    border-color: black;
-    border-style: solid;
-    border-width: 2px;
-    margin-top: 50px;
-    background-color: lightsteelblue;
+.post-container {
+	display: flex;
+	border-color: black;
+	border-style: solid;
+	border-width: 2px;
+	margin-top: 50px;
+	background-color: lightsteelblue;
 }
 
-.post-user-pic img{
-    height: 100px;
-    width: 100px;
-    margin: 10px;
+.post-date {
+	display: block;
 }
 
-.post-buttons{
-    padding-top: 80px;
+.post-user-pic img {
+	height: 100px;
+	width: 100px;
+	margin: 10px;
 }

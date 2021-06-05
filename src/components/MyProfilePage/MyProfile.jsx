@@ -16,7 +16,7 @@ const MyProfilePage = () => {
         <div className="row pb-5">
           <NavBar tabActive="1" />
         </div>
-        <div className="row pt-4 text-center">
+        <div className="row pt-6 text-center">
           <h1 className="title">{`Welcome back, ${loggedInUser.firstName}`}</h1>
           <p className="text-center f-italic">{loggedInUser.quote ?? "You need a quote, bro!"}</p>
         </div>
@@ -28,8 +28,10 @@ const MyProfilePage = () => {
             <FriendsList />
           </div>
         </div>
-        <div className="col">
-          <AddPost />
+        <div className="row row-cols-1">
+          <div className="col-12">
+            <AddPost />
+          </div>
         </div>
         <div className="col">
           <PostFeed />

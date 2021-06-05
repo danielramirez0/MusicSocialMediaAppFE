@@ -27,7 +27,7 @@ const PostFeed = () => {
               alt=""
             />
           </div>
-          <div className="post-body">{post.body}</div>
+          <div className="post-body">{post.text}</div>
           <div>
             <button>Likes: {post.likes}</button>
             <button>Dislikes: {post.dislikes}</button>

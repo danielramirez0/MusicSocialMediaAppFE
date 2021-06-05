@@ -34,7 +34,10 @@ const useForm = (callback) => {
 
     callback();
   };
-  return { errors, values, handleChange, handleSubmit };
+  const clearValues = () => {
+    setValues({});
+  };
+  return { errors, values, handleChange, handleSubmit, clearValues };
 };
 
 export default useForm;

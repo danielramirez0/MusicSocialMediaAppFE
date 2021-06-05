@@ -44,7 +44,7 @@ const SearchPage = () => {
       <div className="row">
         {allUsers.map((user) => (
           <div key={`${user._id}`} className="card" style={{ width: "18rem" }}>
-            <img src={`${user.photoImage}`} className="card-img-top" alt="profile image" />
+            <img src={`${user.photoImage}`} className="card-img-top" alt="face" />
             <div className="card-body">
               <h5 className="card-title">{`${user.firstName} ${user.lastName}`}</h5>
               <p className="card-text">

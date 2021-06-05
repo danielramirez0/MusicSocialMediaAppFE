@@ -1,7 +1,5 @@
 import "./BioInfo.css";
 import { useAppContext } from "../../libs/contextLib";
-import React, { useEffect } from "react";
-import axios from "axios";
 
 const BioInfo = () => {
   const { loggedInUser, isAuthenticated } = useAppContext();
@@ -23,7 +21,7 @@ const BioInfo = () => {
             </div>
           </a>
         </div>
-        <div className="col-6 rounded border border-dark text-center">
+        <div className="col rounded border border-dark text-center ml-15 mt-15">
           <div className="row row-cols-1">
             <span className="bg-dark bg-gradient text-light">Name:</span>
             <p className="">

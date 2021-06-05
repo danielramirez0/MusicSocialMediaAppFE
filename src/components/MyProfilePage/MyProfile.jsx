@@ -1,11 +1,11 @@
 import NavBar from "../NavBar/NavBar";
 import BioInfo from "../BioInfo/BioInfo";
-import FriendsList from "../FriendsList/FriendsList";
 import AddPost from "../AddPost/AddPost";
 import PostFeed from "../PostFeed/PostFeed";
 import axios from "axios";
 import "./MyProfile.css";
 import { useAppContext } from "../../libs/contextLib";
+import FriendsList from "../FriendsList/FriendsList";
 
 const MyProfilePage = () => {
   const { loggedInUser, setLoggedInUser, isAuthenticated } = useAppContext();
@@ -21,22 +21,26 @@ const MyProfilePage = () => {
 
   return (
     isAuthenticated && (
-      <div className="container">
-        <div className="pb-5">
+      <div className="profile-container">
+        <div className="row pb-5">
           <NavBar tabActive="1" />
         </div>
-        <div className="row pt-6">
-          <div className="col-10">
+        <div className="row pt-4 text-center">
+          <h1 className="title">{`Welcome back, ${loggedInUser.firstName}`}</h1>
+          <p className="text-center f-italic">{loggedInUser.quote ?? "You need a quote, bro!"}</p>
+        </div>
+        <div className="row">
+          <div className="col">
             <BioInfo />
           </div>
-          <div className="col-2">
+          <div className="col-4">
             <FriendsList />
           </div>
         </div>
-        <div className="col-4">
+        <div className="col">
           <AddPost addAPost={addAPost} />
         </div>
-        <div className="col-4">
+        <div className="col">
           <PostFeed />
         </div>
       </div>

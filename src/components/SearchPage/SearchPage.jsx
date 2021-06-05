@@ -6,17 +6,17 @@ import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 const SearchPage = () => {
-  const { headers, allUsers, loggedInUser } = useAppContext();
+  const { headers, allUsers, loggedInUser, setLoggedInUser } = useAppContext();
   const history = useHistory();
   const sendFriendRequest = (user) => {
     if (loggedInUser !== undefined) {
       const friendRequest = {
         receiver: {
-          _id: user.id,
+          _id: user._id,
           name: `${user.firstName} ${user.lastName}`,
         },
         sender: {
-          _id: loggedInUser.id,
+          _id: loggedInUser._id,
           name: `${loggedInUser.firstName} ${loggedInUser.lastName}`,
         },
       };

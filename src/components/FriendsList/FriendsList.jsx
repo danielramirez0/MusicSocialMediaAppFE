@@ -10,8 +10,11 @@ const FriendsList = () => {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    setPendingFriends(loggedInUser.friends.filter((friend) => friend.pending));
-    setFriends(loggedInUser.friends.filter((friend) => !friend.pending));
+    axios.get(`http://localhost:5000/api/users/${loggedInUser._id}`).then((response) => {
+      const friendData = response.data.friends;
+      setPendingFriends(friendData.filter((friend) => friend.pending));
+      setFriends(friendData.filter((friend) => !friend.pending));
+    });
   }, [loggedInUser]);
 
   useEffect(() => {
@@ -59,18 +62,22 @@ const FriendsList = () => {
       <div className="row text-center">
         <div className="col">
           <ul className="list-group list-group-flush scroll-y">
-            {pendingFriends.map((pending) => (
-              <li key={pending._id} className="list-group-item">
-                <div className="row row-cols-2">
-                  <div className="col-8 text-center">
-                    <p>{pending.name}</p>
+            {pendingFriends.length > 0 ? (
+              pendingFriends.map((pending) => (
+                <li key={pending._id} className="list-group-item">
+                  <div className="row row-cols-2">
+                    <div className="col-8 text-center">
+                      <p>{pending.name}</p>
+                    </div>
+                    <div className="col-4">
+                      <button className="btn btn-danger">X</button>
+                    </div>
                   </div>
-                  <div className="col-4">
-                    <button className="btn btn-danger">X</button>
-                  </div>
-                </div>
-              </li>
-            ))}
+                </li>
+              ))
+            ) : (
+              <p className="">Find more friends!</p>
+            )}
           </ul>
         </div>
       </div>
@@ -79,20 +86,28 @@ const FriendsList = () => {
           <h4 className="f-italic">Approve a friend request!</h4>
         </div>
       </div>
-      <ul className="list-group list-group-flush scroll-y">
-        {requests.map((request) => (
-          <li key={request.user_id} className="list-group-item">
-            <div className="row row-cols-2">
-              <div className="col-8 text-center">
-                <p>{request.name}</p>
-              </div>
-              <div className="col-4">
-                <button className="btn btn-danger">X</button>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div className="row text-center">
+        <ul className="list-group list-group-flush scroll-y">
+          {requests.length > 0 ? (
+            requests.map((request) => (
+              <li key={request.user_id} className="list-group-item">
+                <div className="row row-cols-2">
+                  <div className="col-8 text-center">
+                    <p>{request.name}</p>
+                  </div>
+                  <div className="col-4">
+                    <button className="btn btn-danger">X</button>
+                  </div>
+                </div>
+              </li>
+            ))
+          ) : (
+            <p className="">
+              You don't have any requests from others to approve. Don't worry, the'll come.
+            </p>
+          )}
+        </ul>
+      </div>
     </div>
   );
 };

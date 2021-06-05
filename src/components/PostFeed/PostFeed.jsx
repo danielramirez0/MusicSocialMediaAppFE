@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./PostFeed.css";
 import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
-import dateFormat from "dateformat";
 
 const PostFeed = () => {
   const { loggedInUser } = useAppContext();
@@ -20,21 +19,65 @@ const PostFeed = () => {
     </div>
   ) : (
     <div className="row">
-      {posts.map((post) => (
-        <div key={post._id} className="post-container">
-          <div className="post-user-pic">
-            <img
-              src="https://www.bing.com/th?id=OIP.N8rKfbKT-MHFneNrhohDKgHaEo&w=155&h=100&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-              alt=""
-            />
-          </div>
-          <div className="post-body">{post.text}</div>
-          <div>
-            <button>Likes: {post.likes}</button>
-            <button>Dislikes: {post.dislikes}</button>
-          </div>
+      <div className="row row-cols-1">
+        <div className="col text-center">
+          <h3 className="title-centered">Post Feed</h3>
         </div>
-      ))}
+      </div>
+      <div className="col">
+        {posts.map((post) => (
+          <div key={post._id} className="row row-cols-3 post-container">
+            <div className="col-2">
+              <div className="post-user-pic">
+                <img
+                  src="https://www.bing.com/th?id=OIP.N8rKfbKT-MHFneNrhohDKgHaEo&w=155&h=100&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="col-8 main-post-body">
+              <div className="row row-cols-4 text-center">
+                <div className="col-2">
+                  <h5 className="moodLabel">Felt:</h5>
+                </div>
+                <div className="col-4">
+                  <p className="moodText">{post.mood}</p>
+                </div>
+                <div className="col-2">
+                  <h5 className="post-time-label">On:</h5>
+                </div>
+                <div className="col-4">
+                  <p className="post-time-text">{post.time}</p>
+                </div>
+              </div>
+              <div className="row row-cols-1">
+                <h5 className="moodLabel">Wrote:</h5>
+                <div className="col">
+                  <div className="post-body">{post.text}</div>
+                </div>
+              </div>
+            </div>
+            <div className="col-2">
+              <div className="row row-cols-2">
+                <div className="col-8">
+                  <button className="btn btn-outline-success">Like:</button>
+                </div>
+                <div className="col-4 text-center">
+                  <p>{post.likes}</p>
+                </div>
+              </div>
+              <div className="row row-cols-2">
+                <div className="col-8">
+                  <button className="btn btn-outline-danger">Dislike:</button>
+                </div>
+                <div className="col-4 text-center">
+                  <p>{post.dislikes}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

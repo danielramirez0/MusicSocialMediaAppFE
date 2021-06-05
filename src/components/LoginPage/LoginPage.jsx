@@ -26,7 +26,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="container">
+    <div className="row">
       <div className="pb-5">
         <NavBar tabActive="n/a" />
       </div>

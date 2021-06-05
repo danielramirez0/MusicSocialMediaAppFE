@@ -14,9 +14,7 @@ const PostFeed = () => {
 
 		switch (event.target.name) {
 			case "like":
-				console.log("like");
 				const like = posts[post].likes;
-				console.log(like);
 				axios
 					.put(
 						`http://localhost:5000/api/posts/${loggedInUser._id}/${posts[post]._id}/likes`,
@@ -31,9 +29,12 @@ const PostFeed = () => {
 					});
 				break;
 			case "dislike":
+				const dislike = posts[post].dislikes;
 				axios
-					.post(
-						`http://localhost:5000/api/posts/${loggedInUser._id}/${posts[post]._id}/dislikes`
+					.put(
+						`http://localhost:5000/api/posts/${loggedInUser._id}/${posts[post]._id}/dislikes`,
+						dislike,
+						headers
 					)
 					.then((res) => {
 						console.log(res);
@@ -54,7 +55,7 @@ const PostFeed = () => {
 		axios
 			.get(`http://localhost:5000/api/posts/${loggedInUser._id}`)
 			.then((response) => setPosts(response.data));
-	}, [loggedInUser][posts.likes]);
+	}, [loggedInUser][posts]);
 
 	return posts.length === 0 ? (
 		<div>

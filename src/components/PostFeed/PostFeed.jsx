@@ -44,7 +44,19 @@ const PostFeed = () => {
 					});
 				break;
 			case "delete":
-				console.log("delete");
+				axios
+					.put(
+						`http://localhost:5000/api/posts/${loggedInUser._id}/${posts[post]._id}`,
+						posts,
+						headers
+					)
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+						console.log(err.response.data);
+					});
 				break;
 			default:
 				break;
@@ -55,7 +67,13 @@ const PostFeed = () => {
 		axios
 			.get(`http://localhost:5000/api/posts/${loggedInUser._id}`)
 			.then((response) => setPosts(response.data));
-	}, [loggedInUser][posts]);
+	}, [loggedInUser]);
+
+	useEffect(() => {
+		axios
+			.get(`http://localhost:5000/api/posts/${loggedInUser._id}`)
+			.then((response) => setPosts(response.data));
+	}, [posts]);
 
 	return posts.length === 0 ? (
 		<div>

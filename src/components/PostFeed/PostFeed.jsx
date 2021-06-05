@@ -4,14 +4,57 @@ import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
 
 const PostFeed = () => {
-	const { loggedInUser } = useAppContext();
+	const { loggedInUser, headers } = useAppContext();
 	const [posts, setPosts] = useState([]);
+
+	const buttonClick = (event, post) => {
+		console.log("button", event);
+		console.log("button", post);
+		console.log("button", posts);
+
+		switch (event.target.name) {
+			case "like":
+				console.log("like");
+				const like = posts[post].likes;
+				console.log(like);
+				axios
+					.put(
+						`http://localhost:5000/api/posts/${loggedInUser._id}/${posts[post]._id}/likes`,
+						like,
+						headers
+					)
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+				break;
+			case "dislike":
+				axios
+					.post(
+						`http://localhost:5000/api/posts/${loggedInUser._id}/${posts[post]._id}/dislikes`
+					)
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+				break;
+			case "delete":
+				console.log("delete");
+				break;
+			default:
+				break;
+		}
+	};
 
 	useEffect(() => {
 		axios
 			.get(`http://localhost:5000/api/posts/${loggedInUser._id}`)
 			.then((response) => setPosts(response.data));
-	}, [loggedInUser]);
+	}, [loggedInUser][posts.likes]);
 
 	return posts.length === 0 ? (
 		<div>
@@ -25,8 +68,8 @@ const PostFeed = () => {
 				</div>
 			</div>
 			<div className="col">
-				{posts.map((post) => (
-					<div key={post._id} className="row row-cols-3 post-container">
+				{posts.map((post, index) => (
+					<div key={index} className="row row-cols-3 post-container">
 						<div className="col-2">
 							<div className="post-user-pic">
 								<img
@@ -60,7 +103,12 @@ const PostFeed = () => {
 						<div className="col-2">
 							<div className="row row-cols-2">
 								<div className="col-8">
-									<button className="btn btn-outline-success">Like:</button>
+									<button
+										name="like"
+										className="btn btn-outline-success"
+										onClick={(event) => buttonClick(event, index)}>
+										Like:
+									</button>
 								</div>
 								<div className="col-4 text-center">
 									<p>{post.likes}</p>
@@ -68,14 +116,24 @@ const PostFeed = () => {
 							</div>
 							<div className="row row-cols-2">
 								<div className="col-8">
-									<button className="btn btn-outline-danger">Dislike:</button>
+									<button
+										name="dislike"
+										className="btn btn-outline-danger"
+										onClick={(event) => buttonClick(event, index)}>
+										Dislike:
+									</button>
 								</div>
 								<div className="col-4 text-center">
 									<p>{post.dislikes}</p>
 								</div>
 							</div>
-							<div className="row ">
-								<button className="btn btn-outline-dark">Delete Post!</button>
+							<div className="row">
+								<button
+									name="delete"
+									onClick={(event) => buttonClick(event, index)}
+									className="btn btn-outline-dark">
+									Delete Post!
+								</button>
 							</div>
 						</div>
 					</div>

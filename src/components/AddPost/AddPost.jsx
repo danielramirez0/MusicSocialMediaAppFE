@@ -34,6 +34,7 @@ const AddPost = () => {
 			alert(
 				"Please choose a mood that best describes what you're currently feeling!"
 			);
+			return;
 		}
 
 		console.log(newPost);

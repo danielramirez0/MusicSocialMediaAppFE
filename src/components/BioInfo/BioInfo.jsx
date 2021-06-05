@@ -16,7 +16,7 @@ const BioInfo = () => {
                 alt="tiger pic"
               />
               <div className="profile-pic overlay">
-                <div className="profile-pic overlay-text">Edit Photo</div>
+                <div className="overlay-text">Edit Photo</div>
               </div>
             </div>
           </a>

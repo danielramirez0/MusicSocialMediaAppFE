@@ -9,6 +9,28 @@ const FriendsList = () => {
 	const [pendingFriends, setPendingFriends] = useState([]);
 	const [requests, setRequests] = useState([]);
 
+	console.log(friends);
+	console.log(pendingFriends);
+	console.log(requests);
+	console.log(loggedInUser);
+
+	const buttonClick = (event, choice) => {
+		switch (event.target.name) {
+			case "approve":
+				console.log("approved!");
+				console.log(requests[choice]);
+				console.log(requests[choice].approve);
+				requests[choice].approve = true;
+				console.log(requests[choice]);
+				console.log(requests[choice].approve);
+				break;
+			case "deny":
+				break;
+			default:
+				break;
+		}
+	};
+
 	useEffect(() => {
 		axios
 			.get(`http://localhost:5000/api/users/${loggedInUser._id}`)
@@ -97,14 +119,25 @@ const FriendsList = () => {
 			<div className="row text-center">
 				<ul className="list-group list-group-flush scroll-y">
 					{requests.length > 0 ? (
-						requests.map((request) => (
-							<li key={request.user_id} className="list-group-item">
+						requests.map((request, index) => (
+							<li key={index} className="list-group-item">
 								<div className="row row-cols-2">
 									<div className="col-8 text-center">
 										<p>{request.name}</p>
 									</div>
 									<div className="col-4">
-										<button className="btn btn-danger">X</button>
+										<button
+											onClick={(event) => buttonClick(event, index)}
+											name="approve"
+											className="btn btn-success">
+											APPROVE
+										</button>
+										<button
+											onClick={(event) => buttonClick(event, index)}
+											name="deny"
+											className="btn btn-danger">
+											DENY
+										</button>
 									</div>
 								</div>
 							</li>

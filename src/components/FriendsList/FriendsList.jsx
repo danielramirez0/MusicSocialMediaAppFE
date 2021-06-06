@@ -49,6 +49,19 @@ const FriendsList = () => {
 						console.log(err);
 						console.log(err.response.data);
 					});
+				axios
+					.put(
+						`http://localhost:5000/api/users/${loggedInUser._id}/${requests[choice]._id}/deleteRequest`,
+						loggedInUser,
+						headers
+					)
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+						console.log(err.response.data);
+					});
 				break;
 			case "deny":
 				console.log("Denied");

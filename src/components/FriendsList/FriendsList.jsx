@@ -51,6 +51,25 @@ const FriendsList = () => {
 					});
 				break;
 			case "deny":
+				console.log("Denied");
+				break;
+			case "deleteFriend":
+				console.log("Deleting friend");
+				console.log(friends);
+				console.log(loggedInUser);
+				axios
+					.put(
+						`http://localhost:5000/api/users/${loggedInUser._id}/${friends[choice]._id}/deleteFriend`,
+						loggedInUser,
+						headers
+					)
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+						console.log(err.response.data);
+					});
 				break;
 			default:
 				break;
@@ -90,9 +109,9 @@ const FriendsList = () => {
 				<div className="col">
 					<ul className="list-group scroll-y list-group-flush">
 						{friends.length > 0 ? (
-							friends.map((friend) => (
+							friends.map((friend, index) => (
 								<li
-									key={friend.user_id}
+									key={index}
 									className="list-group-item list-group-item-dark">
 									<div className="row row-cols-2">
 										<div className="col-2">
@@ -101,6 +120,12 @@ const FriendsList = () => {
 										<div className="col-10">
 											<p className="">{friend.name}</p>
 										</div>
+										<button
+											onClick={(event) => buttonClick(event, index)}
+											name="deleteFriend"
+											className="btn btn-dark">
+											Delete Friend!
+										</button>
 									</div>
 								</li>
 							))
@@ -171,7 +196,7 @@ const FriendsList = () => {
 					) : (
 						<p className="">
 							You don't have any requests from others to approve. Don't worry,
-							the'll come.
+							they'll come.
 						</p>
 					)}
 				</ul>

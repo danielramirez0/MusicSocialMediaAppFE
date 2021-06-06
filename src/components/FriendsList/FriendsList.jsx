@@ -4,7 +4,7 @@ import "./FriendsList.css";
 import axios from "axios";
 
 const FriendsList = () => {
-	const { loggedInUser } = useAppContext();
+	const { loggedInUser, headers } = useAppContext();
 	const [friends, setFriends] = useState([]);
 	const [pendingFriends, setPendingFriends] = useState([]);
 	const [requests, setRequests] = useState([]);
@@ -20,9 +20,35 @@ const FriendsList = () => {
 				console.log("approved!");
 				console.log(requests[choice]);
 				console.log(requests[choice].approve);
-				requests[choice].approve = true;
-				console.log(requests[choice]);
-				console.log(requests[choice].approve);
+				console.log(requests[choice]._id);
+				console.log(requests[choice].user_id);
+				console.log(loggedInUser._id);
+				axios
+					.post(
+						`http://localhost:5000/api/users/${loggedInUser._id}/${requests[choice].user_id}/addFriend`,
+						requests[choice],
+						headers
+					)
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+						console.log(err.response.data);
+					});
+				axios
+					.post(
+						`http://localhost:5000/api/users/${requests[choice].user_id}/${loggedInUser._id}/addFriend`,
+						loggedInUser,
+						headers
+					)
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+						console.log(err.response.data);
+					});
 				break;
 			case "deny":
 				break;

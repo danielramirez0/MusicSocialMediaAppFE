@@ -98,6 +98,24 @@ const FriendsList = () => {
 						console.log(err.response.data);
 					});
 				break;
+			case "pendingDelete":
+				console.log(loggedInUser);
+				console.log(pendingFriends);
+				console.log(requests);
+				axios
+					.put(
+						`http://localhost:5000/api/users/${loggedInUser._id}/${pendingFriends[choice]._id}/deleteFriend`,
+						loggedInUser,
+						headers
+					)
+					.then((res) => {
+						console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+						console.log(err.response.data);
+					});
+				break;
 			default:
 				break;
 		}
@@ -171,14 +189,19 @@ const FriendsList = () => {
 				<div className="col">
 					<ul className="list-group list-group-flush scroll-y">
 						{pendingFriends.length > 0 ? (
-							pendingFriends.map((pending) => (
-								<li key={pending._id} className="list-group-item">
+							pendingFriends.map((pending, index) => (
+								<li key={index} className="list-group-item">
 									<div className="row row-cols-2">
 										<div className="col-8 text-center">
 											<p>{pending.name}</p>
 										</div>
 										<div className="col-4">
-											<button className="btn btn-danger">X</button>
+											<button
+												onClick={(event) => buttonClick(event, index)}
+												name="pendingDelete"
+												className="btn btn-danger">
+												X
+											</button>
 										</div>
 									</div>
 								</li>

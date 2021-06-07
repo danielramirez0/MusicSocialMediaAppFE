@@ -70,12 +70,12 @@ const AddPost = () => {
 							id="mood"
 							name="mood">
 							<option defaultValue value="meh...">
-								What you were feeling when you posted...
+								What you were feeling at this moment...
 							</option>
-							<option value="Inspired">Inpired</option>
-							<option value="Rejuvinated">Rejuvinated</option>
-							<option value="Enlightened">Enlightended</option>
-							<option value="Meloncoly">Meloncoly</option>
+							<option value="Inspired">Inspired</option>
+							<option value="Rejuvenated">Rejuvenated</option>
+							<option value="Enlightened">Enlightened</option>
+							<option value="Melancholy">Melancholy</option>
 						</select>
 					</div>
 					<div className="input-group mb-3">

@@ -12,7 +12,9 @@ const AddPost = () => {
 	async function submitPost() {
 		let today = new Date();
 		let mM =
-			today.getMonth() < 10 ? `0${today.getMonth()}` : `${today.getMonth()}`;
+			today.getMonth() + 1 < 10
+				? `0${today.getMonth() + 1}`
+				: `${today.getMonth() + 1}`;
 		let dd = today.getDay() < 10 ? `0${today.getDay()}` : `${today.getDay()}`;
 		let yyyy = today.getFullYear();
 		let hh =
